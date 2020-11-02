@@ -2,7 +2,9 @@
 """
 Module for FileStorage class
 """
+from models.base_model import BaseModel
 import json
+import os.path
 
 
 class FileStorage():
@@ -45,8 +47,9 @@ class FileStorage():
         """
         Deserializes the JSON file to __objects
         """
-        try:
+        if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as file:
-                FileStorage.__objects = json.load(file)
-        except:
-            pass
+                deseria = json.load(file)
+            for key, value in deseria.items():
+                objd = eval(value["__class__"])(**value)
+                FileStorage.__objects[key] = objd

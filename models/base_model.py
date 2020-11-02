@@ -3,7 +3,7 @@
 Module for BaseModel class
 """
 from datetime import datetime
-from  models.__init__ import storage # Variable created on models.__init__.py
+import  models # Variable created on models.__init__.py
 import uuid
 
 
@@ -41,7 +41,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         """
@@ -55,7 +55,7 @@ class BaseModel():
         Updates the public instance update_at with the current time
         """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """
