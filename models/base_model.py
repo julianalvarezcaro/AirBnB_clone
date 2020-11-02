@@ -3,7 +3,7 @@
 Module for BaseModel class
 """
 from datetime import datetime
-import  models # Variable created on models.__init__.py
+import models  # Variable created on models.__init__.py
 import uuid
 
 
@@ -33,7 +33,7 @@ class BaseModel():
         if kwargs:
             formaTi = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
-                if key is not "__class__":
+                if key != "__class__":
                     setattr(self, key, value)
                 if key in ["created_at", "updated_at"]:
                     setattr(self, key, datetime.strptime(value, formaTi))
@@ -62,7 +62,7 @@ class BaseModel():
         Returns a dictionary containing all keys/values
         of __dict__ of the instance
         """
-        dic = self.__dict__.copy() # Clarify later
+        dic = self.__dict__.copy()  # Clarify later
         dic['__class__'] = self.__class__.__name__
         dic['created_at'] = self.created_at.isoformat()
         dic['updated_at'] = self.updated_at.isoformat()
