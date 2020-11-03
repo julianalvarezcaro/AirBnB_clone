@@ -161,7 +161,7 @@ id by adding or updating attribute
                 val = str(val)
                 if val[0] == '"':
                     val = val.replace("\"", "")
-        setattr(obj, words[2], eval(val))
+        setattr(obj, words[2], val)
         storage.save()
 
 # ---------------Implementation methods---------------
