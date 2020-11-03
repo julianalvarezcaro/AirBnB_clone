@@ -1,8 +1,8 @@
 ![](Logo.jpg)
 
-# AirBnB clone - The console
+# AirBnB clone - The console 🌐
 
-### Contents
+### Contents 📌
 
 * [Description](https://github.com/jcamilovillah/AirBnB_clone#description)
 * [Files](https://github.com/jcamilovillah/AirBnB_clone#repository-contents)
