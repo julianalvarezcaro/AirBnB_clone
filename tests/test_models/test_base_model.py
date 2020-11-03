@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 import os
 import unittest
 
+
 class TestBaseModel(unittest.TestCase):
     """Unittesting class
     """
@@ -24,7 +25,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(BaseModel.__str__.__doc__)
         self.assertIsNotNone(BaseModel.save.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
-
 
     def test_exec_permissions(self):
         """Method that test for check the execution permissions
