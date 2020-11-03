@@ -33,7 +33,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(read)
         write = os.access('models/base_model.py', os.W_OK)
         self.assertTrue(write)
-        exect = os.access('models/base_model.py.py', os.X_OK)
+        exect = os.access('models/base_model.py', os.X_OK)
         self.assertTrue(exect)
 
     def test_is_an_instance(self):
