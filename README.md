@@ -52,14 +52,13 @@ AirBnB clone - The console files:
 | **Function** | **Funcionality** | **Sample Usage** |
 | -------------- | ----------------- | ----------------- |
 |EOF | Exit the program. | EOF
-|all | Prints all string representation of all instances based or not on the class name. | User.all()
-|count | Returns count of objects. | User.count()
+|all | Prints all string representation of all instances based or not on the class name. | all BaseModel
 |create | Creates a new instance of BaseModel, save and print the id. | create User
-|destroy | Deletes an instance based on the class name and id. | User.destroy('12345')
+|destroy | Deletes an instance based on the class name and id. | destroy BaseModel \<id>
 |help | Help function. | help
 |quit | Exit the program. | quit
-|show | Prints the string representation of an instance based on the class name and id. | User.show('12345')
-|update | Updates an instance based on the class name and id by adding or updating attribute. | User.update('12345', {'name' : 'CarLuz'})
+|show | Prints the string representation of an instance based on the class name and id. | show BaseModel \<id>
+|update | Updates an instance based on the class name and id by adding or updating attribute. | update BaseModel \<id> attribute "new value"
 
 ---
 ### How to Install
@@ -76,7 +75,7 @@ git clone https://github.com/jcamilovillah/AirBnB_clone.git
 
 Documented commands (type help <topic>):
 ========================================
-EOF  all  count  create  destroy  help  quit  show  update
+EOF  all  create  destroy  help  quit  show  update
 
 (hbnb) all MyModel
 ** class doesn't exist **
