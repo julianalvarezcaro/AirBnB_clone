@@ -19,7 +19,8 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb) '
     file = None
-    classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
+    classes =\
+        ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
 
     def do_quit(self, line):
         """Quit command to exit the program
@@ -139,7 +140,18 @@ id by adding or updating attribute
         obj = dic[key]
         val = words[3]
         if val[0] == '"':
-            val = val.replace("\"", "")
+            finalS = val
+            found = False
+            if len(words) > 4:
+                for w in range(4, len(words)):
+                    finalS += " " + words[w]
+                    if '"' in words[w]:
+                        found = True
+                        break
+                if found:
+                    val = finalS
+                else:
+                    pass
         try:
             val = int(val)
         except ValueError:
@@ -147,10 +159,12 @@ id by adding or updating attribute
                 val = float(val)
             except ValueError:
                 val = str(val)
+                if val[0] == '"':
+                    val = val.replace("\"", "")
         setattr(obj, words[2], val)
         storage.save()
 
-# ------------Implementation methods----------------
+# ---------------Implementation methods---------------
 
     def close(self):
         """close process
