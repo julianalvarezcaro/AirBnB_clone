@@ -117,7 +117,7 @@ based or not on the class name
 id by adding or updating attribute
         """
         if not line:
-            print("** class name missing *")
+            print("** class name missing **")
             return
         words = line.split()
         if words[0] not in HBNBCommand.classes:
