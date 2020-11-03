@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""
-Module for FileStorage class
+"""Module for FileStorage class
 """
 from models.base_model import BaseModel
+from models.user import User
 import json
 import os.path
 
@@ -16,21 +16,18 @@ class FileStorage():
     __objects = {}
 
     def all(self):
-        """
-        Returns _objects dictionary
+        """Returns _objects dictionary
         """
         return FileStorage.__objects
 
     def new(self, obj):
-        """
-        Sets in __objects the obj with key <obj class name>.id
+        """Sets in __objects the obj with key <obj class name>.id
         """
         key = type(obj).__name__ + "." + obj.id
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """
-        Serializes __objects to the JSON file
+        """Serializes __objects to the JSON file
         """
         dic = {}
         for key, value in FileStorage.__objects.items():
@@ -39,8 +36,7 @@ class FileStorage():
             json.dump(dic, file)
 
     def reload(self):
-        """
-        Deserializes the JSON file to __objects
+        """Deserializes the JSON file to __objects
         """
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as file:

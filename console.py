@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-Console program
+"""Console program module
 """
 import cmd
 from models.base_model import BaseModel
@@ -14,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb) '
     file = None
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User"]
 
     def do_quit(self, line):
         """Quit command to exit the program
@@ -134,12 +133,12 @@ id by adding or updating attribute
         obj = dic[key]
         val = words[3]
         if val[0] == '"':
-            val = val.replace("\"","")
+            val = val.replace("\"", "")
         try:
             val = int(val)
         except ValueError:
             try:
-                val =  float(val)
+                val = float(val)
             except ValueError:
                 val = str(val)
         setattr(obj, words[2], val)
