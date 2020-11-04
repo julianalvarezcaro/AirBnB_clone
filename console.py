@@ -37,11 +37,12 @@ class HBNBCommand(cmd.Cmd):
         """
         if not line:
             print("** class name missing **")
-        try:
+            return
+        if line in HBNBCommand.classes:
             inst = eval(line)()
             inst.save()
             print(inst.id)
-        except NameError:
+        else:
             print("** class doesn't exist **")
 
     def do_show(self, line):
