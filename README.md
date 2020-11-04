@@ -1,8 +1,8 @@
 ![](Logo.jpg)
 
-# AirBnB clone - The console
+# AirBnB clone - The console 🌐
 
-### Contents
+### Contents 📌
 
 * [Description](https://github.com/jcamilovillah/AirBnB_clone#description)
 * [Files](https://github.com/jcamilovillah/AirBnB_clone#repository-contents)
@@ -13,7 +13,7 @@
 * [Authors](https://github.com/jcamilovillah/AirBnB_clone#authors)
 ---
 
-### Description 
+### Description 🚀
 Command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging)
 
 - Create your data model.
@@ -26,7 +26,7 @@ This abstraction will also allow you to change the type of storage easily withou
 The console will be a tool to validate this storage engine.
 
 ---
-### Repository contents
+### Repository contents 📋
 AirBnB clone - The console files:
 
 |   **File**   |   **Description**   |
@@ -45,7 +45,7 @@ AirBnB clone - The console files:
 |AUTHORS | Autors file. |
 
 ---
-### Usage
+### Usage 💻
 
 #### Basic Usage of The Console
 ---
@@ -61,13 +61,13 @@ AirBnB clone - The console files:
 |update | Updates an instance based on the class name and id by adding or updating attribute. | update BaseModel \<id> attribute "new value"
 
 ---
-### How to Install
+### How to Install 🔧
 Clone the repositoy below:
 ```bash
 git clone https://github.com/jcamilovillah/AirBnB_clone.git
 ```
 ---
-### Example Usage
+### Example Usage 📖
 
 #### Interative Mode:
 ```
@@ -102,7 +102,7 @@ $ echo "create User" | ./console.py
 (hbnb)063f787b-46ed-4bb8-becc-de0ffde7efed
 ```
 
-### Testing
+### Testing 📐
 
 Unittests for the HolbertonBnB project are defined in the tests folder. To run the entire test suite simultaneously, execute the following command:
 ```
