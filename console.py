@@ -113,7 +113,7 @@ based or not on the class name
         """update instance of all"""
         string1 = line.split()
         string = shlex.split(line)
-        all_objs = models.storage.all()
+        all_objs = storage.all()
         if len(string) < 1:
             print("** class name missing **")
         elif string[0] not in HBNBCommand.classes:
