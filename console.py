@@ -96,6 +96,8 @@ an instance based on the class name and id
                 print("** instance id missing **")
         except KeyError:
             print("** no instance found **")
+        except FileNotFoundError:
+            print("** no instance found **")
 
     def do_all(self, line):
         """Prints all string representation of all instances \
