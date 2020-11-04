@@ -75,21 +75,23 @@ an instance based on the class name and id
     def do_destroy(self, line):
         """destroy command deletes an instance based on the class name and id
         """
-        string = line.split(" ")
-        if len(string[0]) == 0:
+        words = line.split()
+        if not line:
             print("** class name missing **")
-        elif string[0] not in HBNBCommand.classes:
+            return
+        if words[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(string) == 1:
+            return
+        if len(words) == 1:
             print("** instance id missing **")
+            return
+        obj = storage.all()
+        key = words[0] + "." + words[1]
+        if key in obj:
+            del obj[key]
+            storage.save()
         else:
-            all_objs = storage.all()
-            key = string[0] + "." + string[1]
-            if key in all_objs:
-                all_objs.pop(key)
-                storage.save()
-            else:
-                print("** no instance found **")
+            print("** no instance found **")
 
     def do_all(self, line):
         """Prints all string representation of all instances \
@@ -107,56 +109,32 @@ based or not on the class name
         print(strs)
 
     def do_update(self, line):
-        """Updates an instance based on the class name and \
-id by adding or updating attribute
-        """
-        if not line:
+        """update instance of all"""
+        string1 = line.split()
+        string = shlex.split(line)
+        all_objs = models.storage.all()
+        if len(string) < 1:
             print("** class name missing **")
-            return
-        words = line.split()
-        if words[0] not in HBNBCommand.classes:
+        elif string[0] not in HBNBCommand.lista_class:
             print("** class doesn't exist **")
-            return
-        if len(words) < 2:
+        elif len(string) < 2:
             print("** instance id missing **")
-            return
-        dic = storage.all()
-        key = words[0] + "." + words[1]
-        if key not in dic:
-            print("** no instance found **")
-            return
-        if len(words) < 3:
+        elif len(string) < 3:
             print("** attribute name missing **")
-            return
-        if len(words) < 4:
+        elif len(string) < 4:
             print("** value missing **")
-            return
-        obj = dic[key]
-        val = words[3]
-        if val[0] == '"':
-            finalS = val
-            found = False
-            if len(words) > 4:
-                for w in range(4, len(words)):
-                    finalS += " " + words[w]
-                    if '"' in words[w]:
-                        found = True
-                        break
-                if found:
-                    val = finalS
+        else:
+            key = string[0] + "." + string[1]
+            if key in all_objs:
+                object1 = all_objs.get(key)
+                word = string1[3]
+                if string[3].isdigit() and word[0] is not '"':
+                    setattr(object1, string[2], eval(string[3]))
                 else:
-                    pass
-        try:
-            val = int(val)
-        except ValueError:
-            try:
-                val = float(val)
-            except ValueError:
-                val = str(val)
-                if val[0] == '"':
-                    val = val.replace("\"", "")
-        setattr(obj, words[2], val)
-        storage.save()
+                    setattr(object1, string[2], string[3])
+                models.storage.save()
+            else:
+                print("** no instance found **")
 
 # ---------------Implementation methods---------------
 
