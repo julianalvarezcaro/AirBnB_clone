@@ -79,18 +79,18 @@ an instance based on the class name and id
         if not line:
             print("** class name missing **")
             return
-        try:
-            if words[0] not in HBNBCommand.classes:
-                print("** class doesn't exist **")
-                return
-            if len(words) == 1:
-                print("** instance id missing **")
-                return
-            obj = storage.all()
-            key = words[0] + "." + words[1]
+        if words[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+        if len(words) == 1:
+            print("** instance id missing **")
+            return
+        obj = storage.all()
+        key = words[0] + "." + words[1]
+        if key in obj:
             del obj[key]
-            storage.save() 
-        except KeyError:
+            storage.save()
+        else:
             print("** no instance found **")
 
     def do_all(self, line):
