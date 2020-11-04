@@ -75,23 +75,21 @@ an instance based on the class name and id
     def do_destroy(self, line):
         """destroy command deletes an instance based on the class name and id
         """
-        words = line.split()
-        if not line:
+        string = line.split(" ")
+        if len(string[0]) == 0:
             print("** class name missing **")
-            return
-        if words[0] not in HBNBCommand.classes:
+        elif string[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-            return
-        if len(words) == 1:
+        elif len(string) == 1:
             print("** instance id missing **")
-            return
-        obj = storage.all()
-        key = words[0] + "." + words[1]
-        if key in obj:
-            del obj[key]
-            storage.save()
         else:
-            print("** no instance found **")
+            all_objs = storage.all()
+            key = string[0] + "." + string[1]
+            if key in all_objs:
+                all_objs.pop(key)
+                storage.save()
+            else:
+                print("** no instance found **")
 
     def do_all(self, line):
         """Prints all string representation of all instances \
