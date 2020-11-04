@@ -84,16 +84,16 @@ an instance based on the class name and id
             if words[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
+            if len(words) == 1:
+                print("** instance id missing **")
+                return
             file = open("file.json", "r")
             dic = json.load(file)
             file.close()
-            if len(words) >= 2:
-                key = words[0] + "." + words[1]
-                del dic[key]
-                del obj[key]
-                storage.save()
-            else:
-                print("** instance id missing **")
+            key = words[0] + "." + words[1]
+            del dic[key]
+            del obj[key]
+            storage.save() 
         except KeyError:
             print("** no instance found **")
         except FileNotFoundError:
