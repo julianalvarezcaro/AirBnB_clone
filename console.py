@@ -10,6 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 import json
+import shlex
 from models import storage
 
 
@@ -115,7 +116,7 @@ based or not on the class name
         all_objs = models.storage.all()
         if len(string) < 1:
             print("** class name missing **")
-        elif string[0] not in HBNBCommand.lista_class:
+        elif string[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(string) < 2:
             print("** instance id missing **")
@@ -132,7 +133,7 @@ based or not on the class name
                     setattr(object1, string[2], eval(string[3]))
                 else:
                     setattr(object1, string[2], string[3])
-                models.storage.save()
+                storage.save()
             else:
                 print("** no instance found **")
 
