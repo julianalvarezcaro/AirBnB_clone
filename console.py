@@ -25,13 +25,11 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program
         """
-        self.close()
         return True
 
     def do_EOF(self, line):
         """EOF command to exit the program
         """
-        self.close()
         return True
 
     def do_create(self, line):
@@ -47,23 +45,30 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
-        """show whith name a id"""
-        string = line.split()
-        all_objs = storage.all()
-        if len(line) > 0:
-            if string[0] in HBNBCommand.classes:
-                if len(string) > 1:
-                    key = string[0] + "." + string[1]
-                    if key in all_objs:
-                        print(all_objs[key])
-                    else:
-                        print("** no instance found **")
-                else:
-                    print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
-        else:
+        """show command prints the string representation of \
+an instance based on the class name and id
+        """
+        words = line.split()
+        if not line:
             print("** class name missing **")
+            return
+        if words[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+        if len(words) < 2:
+            print("** instance id missing **")
+            return
+        try:
+            with open("file.json", "r") as file:
+                dic = json.load(file)
+            key = words[0] + "." + words[1]
+            if key in dic:
+                inst = eval(words[0])(**dic[key])
+                print(inst)
+            else:
+                print("** no instance found **")
+        except FileNotFoundError:
+            print("** no instance found **")
 
     def do_destroy(self, line):
         """destroy command deletes an instance based on the class name and id
@@ -154,14 +159,6 @@ id by adding or updating attribute
         storage.save()
 
 # ---------------Implementation methods---------------
-
-    def close(self):
-        """close process
-        """
-        if self.file:
-            self.file.close()
-            self.file = None
-
     def emptyline(self):
         """empty line
         """
